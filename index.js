@@ -240,7 +240,7 @@ function php_cgi(conf, req, resp)
       }
     }
     
-    if(!path_info.toLowerCase().endsWith('.php'))
+    if(!fallback && !path_info.toLowerCase().endsWith('.php'))
     {
       let mime = 'application/octet-stream';
       let dot = path_info.lastIndexOf('.');
@@ -253,14 +253,22 @@ function php_cgi(conf, req, resp)
         'Content-Type': mime
       });
 
-      let file = fs.openSync(path_info);
+      let file = fs.openSync(path_info, 'r');
       let BUF_LEN = 4096;
-      let buf = Buffer.allocUnsafe(BUF_LEN);
+      let cache = Buffer.allocUnsafe(BUF_LEN);
+      let buf = null;
       let len = -1;
-      while((len = fs.readSync(file, buf)) > 0)
+      while((len = fs.readSync(file, cache)) > 0)
       {
-        resp.write(len < buf.length ? buf.subarray(0, len) : buf);
+        buf = Buffer.allocUnsafe(len);
+        // Clearly Node.js did not properly implement buffer in write streams and
+        //  the data passed into stream.write(buf) function is NOT deep-copied.
+        // Thus we have to make a copy on our own instead of overwriting the cache.
+        // Big LMFAO to the library implementation stupidity here.
+        cache.copy(buf, 0, 0, len);
+        resp.write(buf);
       }
+      fs.closeSync(file);
       resp.end();
 
       return;
