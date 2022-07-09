@@ -1,0 +1,12 @@
+{
+  "name": "php-cgi.js",
+  "author": {
+    "name": "tan2pow16"
+  },
+  "main": "index.js",
+  "description": "Node.js PHP-CGI server",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "version": "0.1.0"
+}

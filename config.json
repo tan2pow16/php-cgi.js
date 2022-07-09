@@ -1,0 +1,54 @@
+{
+  "bin_path": "D:\\workspace\\php5\\php-cgi.exe",
+
+  "hosts": [
+    {
+      "domain": "localhost",
+      "httpsPrivateKey": "D:\\workspace\\privkey.pem",
+      "httpsCertificate": "D:\\workspace\\fullchain.pem",
+      "web_root": "D:\\workspace\\temp",
+      "fallback_route": "/index.php"
+    },
+    {
+      "domain": "127.0.0.1",
+      "httpsPrivateKey": "D:\\workspace\\privkey.pem",
+      "httpsCertificate": "D:\\workspace\\fullchain.pem",
+      "web_root": "D:\\workspace\\temp",
+      "fallback_route": "/index.php"
+    }
+  ],
+  
+  "ini_dir": "D:\\workspace\\temp",
+
+  "https": true,
+  "httpSlave": true,
+  "httpPort": 80,
+  "httpsPort": 443,
+  "fallbackHttpsPrivateKey": "D:\\workspace\\privkey.pem",
+  "fallbackHttpsCertificate": "D:\\workspace\\fullchain.pem",
+
+  "tmp_dir": "D:\\TEMP\\temp",
+
+  "error_pages": [
+    {
+      "code": "400",
+      "path": "blank.txt"
+    },
+    {
+      "code": "403",
+      "path": "blank.txt"
+    },
+    {
+      "code": "404",
+      "path": "blank.txt"
+    },
+    {
+      "code": "405",
+      "path": "blank.txt"
+    },
+    {
+      "code": "500",
+      "path": "blank.txt"
+    }
+  ]
+}
