@@ -1,7 +1,10 @@
 'use strict';
 
 /**
- * @author tan2pow16
+ * Copyright (c) 2022, tan2pow16. All rights reserved.
+ * 
+ * @author {tan2pow16}
+ * A simple Node.js app that works as a PHP-CGI HTTP(S) server.
  */
 
 const child_process = require('child_process');
@@ -136,16 +139,22 @@ function php_cgi(conf, req, resp)
   let host_conf = conf.hosts.get(hostname);
 
   let cgi_env = Object.assign({}, process.env);
-  Object.assign(cgi_env, {
-    'SERVER_SOFTWARE': `node/${process.version.substring(1)}`,
-    'SERVER_PROTOCOL': 'HTTP/1.1',
-    'GATEWAY_INTERFACE': 'CGI/1.1',
-    'SERVER_NAME': hostname,
-    'REQUEST_METHOD': req.method,
-    'REMOTE_ADDR': req.socket.remoteAddress,
-    'REQUEST_URI': req.url,
-    'REDIRECT_STATUS': 0 // Maybe this isn't so secure. Fix it?
-  });
+
+  cgi_env['SERVER_SOFTWARE'] = `node/${process.version.substring(1)}`;
+  cgi_env['SERVER_PROTOCOL'] = 'HTTP/1.1';
+  cgi_env['GATEWAY_INTERFACE'] = 'CGI/1.1';
+  cgi_env['SERVER_NAME'] = hostname;
+  cgi_env['REQUEST_METHOD'] = req.method;
+  cgi_env['REQUEST_URI'] = req.url;
+  cgi_env['REDIRECT_STATUS'] = 0;
+
+  let remote_addr = req.socket.remoteAddress;
+  if(remote_addr.indexOf('.') > 0)
+  {
+    // Strip hybrid IPv6 artifact from an IPv4 address.
+    remote_addr = remote_addr.substring(remote_addr.lastIndexOf(':') + 1);
+  }
+  cgi_env['REMOTE_ADDR'] = remote_addr;
 
   if(conf.tmp_dir)
   {
@@ -623,6 +632,10 @@ function parse_config(conf_path)
   return conf;
 }
 
+/**
+ * 
+ * @param {String[]} args 
+ */
 function __main__(args)
 {
   setup_server(parse_config(`${__dirname}/config.json`));
