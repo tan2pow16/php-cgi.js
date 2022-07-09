@@ -1,33 +1,33 @@
 {
-  "bin_path": "D:\\workspace\\php5\\php-cgi.exe",
+  "bin_path": "D:\\Files\\php5\\php-cgi.exe",
 
   "hosts": [
     {
-      "domain": "localhost",
-      "httpsPrivateKey": "D:\\workspace\\privkey.pem",
-      "httpsCertificate": "D:\\workspace\\fullchain.pem",
-      "web_root": "D:\\workspace\\temp",
+      "domain": "127.0.0.1",
+      "httpsPrivateKey": "D:\\workspace\\privkey_P256.pem",
+      "httpsCertificate": "D:\\workspace\\fullchain_P256.pem",
+      "web_root": "D:\\workspace\\php",
       "fallback_route": "/index.php"
     },
     {
-      "domain": "127.0.0.1",
-      "httpsPrivateKey": "D:\\workspace\\privkey.pem",
-      "httpsCertificate": "D:\\workspace\\fullchain.pem",
-      "web_root": "D:\\workspace\\temp",
+      "domain": "localhost",
+      "httpsPrivateKey": "D:\\workspace\\privkey_P256.pem",
+      "httpsCertificate": "D:\\workspace\\fullchain_P256.pem",
+      "web_root": "D:\\workspace\\php",
       "fallback_route": "/index.php"
     }
   ],
   
-  "ini_dir": "D:\\workspace\\temp",
+  "ini_dir": "D:\\workspace\\php",
 
   "https": true,
   "httpSlave": true,
   "httpPort": 80,
   "httpsPort": 443,
-  "fallbackHttpsPrivateKey": "D:\\workspace\\privkey.pem",
-  "fallbackHttpsCertificate": "D:\\workspace\\fullchain.pem",
+  "fallbackHttpsPrivateKey": "D:\\workspace\\php\\privkey.pem",
+  "fallbackHttpsCertificate": "D:\\workspace\\php\\fullchain.pem",
 
-  "tmp_dir": "D:\\TEMP\\temp",
+  "tmp_dir": "D:\\TEMP",
 
   "error_pages": [
     {

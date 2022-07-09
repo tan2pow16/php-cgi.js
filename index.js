@@ -437,7 +437,7 @@ function setup_server(conf)
         let ret = null;
         if(host_conf)
         {
-          let ret = host_conf.ssl_ctx || ret;
+          ret = host_conf.ssl_ctx || ret;
         }
         ret_callback(null, ret);
       },
