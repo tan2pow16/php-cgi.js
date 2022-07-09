@@ -6,7 +6,7 @@
   "main": "index.js",
   "description": "Node.js PHP-CGI server",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=12.22.10"
   },
   "version": "0.1.1"
 }
