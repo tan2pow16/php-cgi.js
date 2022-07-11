@@ -1,54 +1,54 @@
 {
-  "bin_path": "D:\\Files\\php5\\php-cgi.exe",
+  "bin_path": "/usr/bin/php",
 
   "hosts": [
     {
       "domain": "127.0.0.1",
-      "httpsPrivateKey": "D:\\workspace\\privkey_P256.pem",
-      "httpsCertificate": "D:\\workspace\\fullchain_P256.pem",
-      "web_root": "D:\\workspace\\php",
+      "httpsPrivateKey": "/home/privsep/www/conf/privkey_P256.pem",
+      "httpsCertificate": "/home/privsep/www/conf/fullchain_P256.pem",
+      "web_root": "/home/privsep/www/web_root/public",
       "fallback_route": "/index.php"
     },
     {
       "domain": "localhost",
-      "httpsPrivateKey": "D:\\workspace\\privkey_P256.pem",
-      "httpsCertificate": "D:\\workspace\\fullchain_P256.pem",
-      "web_root": "D:\\workspace\\php",
+      "httpsPrivateKey": "/home/privsep/www/conf/privkey_P256.pem",
+      "httpsCertificate": "/home/privsep/www/conf/fullchain_P256.pem",
+      "web_root": "/home/privsep/www/web_root/public",
       "fallback_route": "/index.php"
     }
   ],
   
-  "ini_dir": "D:\\workspace\\php",
+  "ini_dir": "/home/privsep/www/conf",
 
   "https": true,
   "httpSlave": true,
   "httpPort": 80,
   "httpsPort": 443,
-  "fallbackHttpsPrivateKey": "D:\\workspace\\php\\privkey.pem",
-  "fallbackHttpsCertificate": "D:\\workspace\\php\\fullchain.pem",
+  "httpsPrivateKey": "/home/privsep/www/conf/privkey_RSA2048.pem",
+  "httpsCertificate": "/home/privsep/www/conf/fullchain_RSA2048.pem",
 
-  "tmp_dir": "D:\\TEMP",
+  "tmp_dir": "/tmp",
 
   "error_pages": [
     {
       "code": "400",
-      "path": "blank.txt"
+      "path": "/home/privsep/www/web_root/error/400.html"
     },
     {
       "code": "403",
-      "path": "blank.txt"
+      "path": "/home/privsep/www/web_root/error/403.html"
     },
     {
       "code": "404",
-      "path": "blank.txt"
+      "path": "/home/privsep/www/web_root/error/404.html"
     },
     {
       "code": "405",
-      "path": "blank.txt"
+      "path": "/home/privsep/www/web_root/error/405.html"
     },
     {
       "code": "500",
-      "path": "blank.txt"
+      "path": "/home/privsep/www/web_root/error/500.html"
     }
   ]
 }

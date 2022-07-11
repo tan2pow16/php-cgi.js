@@ -175,10 +175,11 @@ function php_cgi(conf, req, resp)
   }
 
   let req_url = url.parse(req.url);
+  let decoded_path_raw;
   let decoded_path;
   try
   {
-    decoded_path = decodeURIComponent(req_url.pathname);
+    decoded_path = decoded_path_raw = decodeURIComponent(req_url.pathname);
   }
   catch(err)
   {
@@ -291,7 +292,7 @@ function php_cgi(conf, req, resp)
   cgi_env['DOCUMENT_ROOT'] = web_root;
 
   // cgi_env['PATH_INFO'] = path_info;
-  cgi_env['PATH_INFO'] = ''; // This is a bug in PHP-CGI that incorrectly set 'PHP_SELF' to a duplicated string.
+  cgi_env['PATH_INFO'] = decoded_path_raw; // This is a bug in PHP-CGI that incorrectly set 'PHP_SELF' to a duplicated string on Windows.
 
   cgi_env['PATH_TRANSLATED'] = path_info;
   cgi_env['QUERY_STRING'] = req_url.query ? req_url.query : '';
